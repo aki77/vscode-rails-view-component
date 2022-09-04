@@ -5,7 +5,7 @@ export async function activate(context: vscode.ExtensionContext) {
   const provider = new CompletionProvider();
   context.subscriptions.push(provider);
 
-	context.subscriptions.push(
+  context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(
       ['erb', 'haml', 'slim'],
       provider,

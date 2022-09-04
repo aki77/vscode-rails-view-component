@@ -23,21 +23,21 @@ type Component = {
 
 const findComponents = async (): Promise<readonly Component[]> => {
   const componentPaths = await workspace.findFiles(COMPONENT_GLOB);
-	const promises = componentPaths.map(async (path) => {
-		const text = (await workspace.openTextDocument(path)).getText();
-		const nameMatches = text.match(NAME_PATTERN);
-		if (!nameMatches) {
-			return;
-		}
-		const argsMatches = text.match(ARGS_PATTERN);
+  const promises = componentPaths.map(async (path) => {
+    const text = (await workspace.openTextDocument(path)).getText();
+    const nameMatches = text.match(NAME_PATTERN);
+    if (!nameMatches) {
+      return;
+    }
+    const argsMatches = text.match(ARGS_PATTERN);
 
-		return {
-			name: nameMatches[1],
-			args: (argsMatches && argsMatches[1]) ?? undefined,
-		};
-	});
+    return {
+      name: nameMatches[1],
+      args: (argsMatches && argsMatches[1]) ?? undefined,
+    };
+  });
 
-	return (await Promise.all(promises)).filter((c): c is NonNullable<typeof c> => !!c);
+  return (await Promise.all(promises)).filter((c): c is NonNullable<typeof c> => !!c);
 };
 
 const buildSnippetValue = (name: string, args?: string): string => {
@@ -104,7 +104,6 @@ export default class CompletionProvider implements CompletionItemProvider {
 
   private async findComponents(): Promise<readonly Component[]> {
     if (!this.cache) {
-      console.log('view_component: no cache!');
       this.cache = await findComponents();
     }
 
@@ -112,7 +111,6 @@ export default class CompletionProvider implements CompletionItemProvider {
   }
 
   private clearCache() {
-    console.log('clearCache');
     this.cache = undefined;
   }
 }
