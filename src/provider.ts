@@ -12,7 +12,7 @@ import {
 } from "vscode";
 
 const LINE_PATTERN = / render (?:[a-zA-Z:]+)?$/;
-const NAME_PATTERN = /class (.*?) < ViewComponent::Base/m;
+const NAME_PATTERN = /class (.*?) < .*Component.*/;
 const ARGS_PATTERN = /def initialize\(([^)]+)\)?/m;
 const COMPONENT_GLOB = 'app/components/**/*_component.rb';
 
