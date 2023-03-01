@@ -2,7 +2,7 @@
   "name": "rails-view-component",
   "displayName": "Rails ViewComponent",
   "description": "Completion provider for Rails ViewComponent",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "aki77",
   "icon": "images/icon.png",
   "engines": {
